@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:fragment="headFragment">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Product Management</title>
+    <link rel="icon" type="image/x-icon" href="resources/assets/download.jpeg">
+    <!-- link bs css -->
+    <link rel="stylesheet" href="resources/bootstrap_5.3.1/css/bootstrap.min.css">
+    <!-- datatable -->
+    <script src="resources/dataTables-1.13.6/js/dataTables.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="resources/dataTables-1.13.6/css/css/dataTables.min.css">
+    <!-- sweet alert2 -->
+    <script src="resources/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <!-- link bs js file -->
+    <script src="resources/bootstrap_5.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="resources/style/dashboard.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- link fontawesome -->
+    <link rel="stylesheet" href="resources/fontawesome_web/css/all.css">
+    <!-- jquery -->
+    <script src="resources/js/jquery.js"></script>
+    <script src="resources/assets/jeewa-high-resolution-logo-black-transparent.png"></script>
+    <link rel="stylesheet" href="resources/w3css/w3.css">
+    <!-- button css -->
+    <link rel="stylesheet" href="resources/style/button.css">
+    <!-- common css -->
+    <link rel="stylesheet" href="resources/style/common.css">
+    <!-- tabel function -->
+    <script src="resources/js/tableFunction.js"></script>
+    <!-- validation js -->
+    <script src="resources/js/validation.js"></script>
+    <!-- link common js file -->
+    <script src="resources/js/commonFunction.js"></script>
+    <!-- link the product js file -->
+    <script src="productController/productController.js"></script>
+</head>
+
+<body>
+    <div class="wrapper ">
+
+        <!-- side bar -->
+        <!-- <aside th:replace="~{ layouts/sidebar :: sidebarfragment}"></aside> -->
+
+
+        <!-- ui content area start -->
+        <div class="main">
+            <!-- top navbar -->
+            <!-- <nav th:replace="~{ layouts/navbar :: topnavbarfragment}"></nav> -->
+            <!-- main component start -->
+            <main class="content px-3 py-2 w3-container">
+
+                <!-- employee table start -->
+                <div class="w3-animate-right " id="empTable">
+
+                    <div class="mb-3 " style="display: flex; justify-content:space-between; align-items: center;">
+
+                        <h4 class="fw-bold" style="color: aliceblue;">Product Table</h4>
+                        <button id="empaddbtn" class="btn btn-success mb-2">Add Product</button>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="mb-3 table-responsive">
+                            <table class="table table-striped-columns table-dark table-hover" id="empTab">
+                                <thead class="table-secondary">
+
+                                    <th scope="col">#</th>
+                                    <th scope="col">Product Code</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Category </th>
+                                    <th scope="col">Brand</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Supplier Name</th>
+                                    <th scope="col">Modify</th>
+
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- employee table end -->
+
+                <!-- employee form start -->
+                <div id="empForm" class="w3-animate-left " style="display: none;">
+                    <div class=" " style="display: flex; justify-content: space-between; align-items: center;">
+                        <button id="empFormToTable" class="btn btn-success mb-3">Product Table</button>
+                        <h4 class="fw-bold" style="color: aliceblue;">Product Form</h4>
+                    </div>
+
+                    <div style="border: 1px solid black; padding: 10px;">
+
+                        <!-- Item form start -->
+                        <form onsubmit="return false" id="formEmployee">
+                            <!-- date start -->
+                            <div class="row p-2">
+                                <div id="date" class="fw-bolder" style="color: red;"></div>
+                            </div>
+                            <!-- date end -->
+
+                            <div class="row justify-content-md-center">
+                                <div class="container">
+                                    <!-- Required field -->
+                                    <div class="row" style="margin-left: 10px;">
+                                        <div>
+                                            <b>
+                                                <p class="fw-bold">
+                                                    <span class="text-danger">* Required</span>
+                                                </p>
+                                            </b>
+                                        </div>
+                                    </div>
+                                    <!-- Required field end -->
+
+                                    <!-- Product Code -->
+                                    <div class="row form-floating ms-4 me-3">
+                                        <input type="text" class="form-control" id="inputProductCode"
+                                            placeholder="Enter Product Code" required
+                                            onkeyup="textValidation2(inputProductCode,productCodeError, '', 'product', 'productcode', '','');">
+                                        <label for="inputProductCode">Product Code <span class="text-danger">*</span>
+                                            <div class="" id="productCodeError" style="display: none;"></div>
+                                        </label>
+                                    </div>
+
+                                    <!-- Product Name -->
+                                    <div class="row form-floating ms-4 me-3 mt-3">
+                                        <input type="text" class="form-control" id="inputProductName"
+                                            placeholder="Enter Product Name" required
+                                            onkeyup="textValidation2(inputProductName,productNameError, '', 'product', 'productname', '');">
+                                        <label for="inputProductName">Product Name <span
+                                                class="text-danger">*</span>
+                                                <div class="" id="productNameError" style="display: none;"></div></label>
+                                    </div>
+
+                                    <!-- Category (Select Input) -->
+                                    <div class="row form-floating ms-4 me-3 mt-3">
+                                        <select class="form-select" id="selectCategory" required
+                                        onchange="selectDFieldValidation(selectCategory,'', 'product', 'category_id')">
+                                            <!-- <option value="" disabled selected>Select Category</option>
+                                            <option value="Laptops">Laptops</option>
+                                            <option value="Desktops">Desktops</option>
+                                            <option value="Accessories">Accessories</option>
+                                            <option value="Components">Components</option> -->
+                                            <!-- Add more categories as needed -->
+                                        </select>
+                                        <label id="selectCategoryLabel" for="selectCategory">Category <span
+                                                class="text-danger">*</span></label>
+                                    </div>
+
+                                    <!-- Brand (Select Input) -->
+                                    <div class="row form-floating ms-4 me-3 mt-3">
+                                        <select class="form-select" id="selectBrand" required
+                                        onchange="selectDFieldValidation(selectBrand,'', 'product', 'brand_id')">
+                                            <!-- <option value="" disabled selected>Select Brand</option>
+                                            <option value="Apple">Apple</option>
+                                            <option value="Dell">Dell</option>
+                                            <option value="HP">HP</option>
+                                            <option value="Lenovo">Lenovo</option> -->
+                                            <!-- Add more brands as needed -->
+                                        </select>
+                                        <label id="selectBrandLabel" for="selectBrand">Brand <span
+                                                class="text-danger">*</span></label>
+                                    </div>
+                                    <!-- Price -->
+                                    <div class="row form-floating ms-4 me-3 mt-3">
+                                        <input type="text" class="form-control" id="inputPrice"
+                                            placeholder="Enter Price" required
+                                            onkeyup="textValidation2(inputPrice,productPriceError, '', 'product', 'price', '');">
+                                        <label for="inputPrice">Price <span class="text-danger">*</span>
+                                            <div class="" id="productPriceError" style="display: none;"></div></label>
+                                    </div>
+
+                                    <!-- Supplier Name -->
+                                    <div class="row form-floating ms-4 me-3 mt-3">
+                                        <input type="text" class="form-control" id="inputSupplierName"
+                                            placeholder="Enter Supplier Name" required
+                                            onkeyup="textValidation2(inputSupplierName,productSupError, '', 'product', 'suppliername', '');">
+                                        <label for="inputSupplierName">Supplier Name <span
+                                                class="text-danger">*</span>
+                                                <div class="" id="productSupError" style="display: none;"></div></label>
+                                    </div>
+
+                                    <!-- Buttons -->
+                                    <div class="row mt-4 mb-3 ms-4 me-3">
+                                        <!-- Add and Update buttons on the left -->
+                                        <div class="col d-flex justify-content-start gap-3">
+                                            <button id="btnAdd" type="button"
+                                                class="btn btn-outline-success" onclick="productAdd()">Add</button>
+                                            <button id="btnUpdate" type="button"
+                                                class="btn btn-outline-warning" onclick="productUpdate()">Update</button>
+                                        </div>
+
+                                        <!-- Clear button on the right -->
+                                        <div class="col d-flex justify-content-end">
+                                            <button id="btnClear" type="button"
+                                                class="btn btn-outline-info" onclick="productDelete()">Clear</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+                        <!-- Item form end -->
+                    </div>
+
+
+                </div>
+                <!-- employee form end -->
+
+            </main>
+            <!-- main component end -->
+
+        </div>
+        <!-- ui content area end -->
+    </div>
+
+
+    <script>
+        const toggler = document.querySelector(".btn");
+
+        toggler.addEventListener("click", function () {
+            document.querySelector("#sidebar").classList.toggle("collapsed");
+        });
+
+        const sidebarItems = document.querySelectorAll(".sidebar-sublink");
+
+        sidebarItems.forEach(function (item) {
+            item.addEventListener("click", function () {
+                document.querySelector("#sidebar").classList.toggle("collapsed");
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            document.querySelector("#sidebar").classList.toggle("collapsed");
+
+        })
+
+        const sidebarItems1 = document.querySelectorAll(".sidebar-item");
+
+        sidebarItems1.forEach(function (item) {
+            const link = item.querySelector(".sidebar-link");
+
+            link.addEventListener("click", function () {
+                sidebarItems1.forEach(function (otherItem) {
+                    otherItem.classList.remove("active"); // Remove "active" from other items
+                });
+                item.classList.add("active"); // Add "active" to the clicked item
+            });
+        });
+
+
+
+
+    </script>
+    <script>
+        const btn = document.getElementById("empaddbtn");
+        btn.addEventListener("click", function () {
+            const table = document.getElementById("empTable");
+            const form = document.getElementById("empForm");
+
+            // Animate table disappearance
+            table.style.opacity = 1; // Ensure opacity is initially 1
+            table.style.transition = "opacity 1.5s ease-out";
+            table.style.display = "none"; // Trigger the animation
+
+            // Delay form appearance slightly
+            setTimeout(function () {
+                form.style.opacity = 0;
+                form.style.display = "block";
+                form.style.transition = "opacity 1.5s ease-in";
+                form.style.opacity = 1; // Gradually fade in
+            }, 100); // Adjust the delay as needed
+        });
+
+        const Formbtn = document.getElementById("empFormToTable")
+        Formbtn.addEventListener("click", function () {
+            const table = document.getElementById("empTable")
+            table.style.display = "block";
+            const form = document.getElementById("empForm")
+            form.style.display = "none"
+        })
+        const tableBtn = document.getElementById("empTable1")
+        tableBtn.addEventListener("click", function () {
+            const table = document.getElementById("empTable")
+            table.style.display = "block";
+            const form = document.getElementById("empForm")
+            form.style.display = "none"
+        })
+
+    </script>
+
+
+
+
+</body>
+
+</html>

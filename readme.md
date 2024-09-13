@@ -58,7 +58,7 @@ The table includes options to edit or delete each product.
 ## Steps to Run the Application
 1. *Clone the Repository:*
 
-git clone https://github.com/Hirusha1-cpu/appleholidays_crud.git  
+git clone https://github.com/Hirusha1-cpu/appleholidays_tech_assessment.git  
 cd `<project-directory>`
 
 2. *Configure MySQL Database:*

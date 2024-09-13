@@ -43,6 +43,7 @@ All products are displayed in a responsive table format, showing key details suc
 The table includes options to edit or delete each product.
 
 ## Technologies Used
+* IDE: Intellij 
 * Backend: Spring Boot
 * Frontend: Thymeleaf template engine
 * Database: MySQL

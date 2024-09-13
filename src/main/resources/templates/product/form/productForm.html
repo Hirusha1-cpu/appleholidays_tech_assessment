@@ -125,15 +125,14 @@
                                         </label>
                                     </div>
 
-                                    <!-- Product Name -->
                                     <div class="row form-floating ms-4 me-3 mt-3">
                                         <input type="text" class="form-control" id="inputProductName"
-                                            placeholder="Enter Product Name" required
-                                            onkeyup="textValidation2(inputProductName,productNameError, '', 'product', 'productname', '');">
-                                        <label for="inputProductName">Product Name <span
-                                                class="text-danger">*</span>
-                                                <div class="" id="productNameError" style="display: none;"></div></label>
-                                    </div>
+                                          placeholder="Enter Product Name" required
+                                          onkeyup="textValidation2(inputProductName, productNameError, '^([A-Z][a-z]+|[A-Z]{2,})(\\s[A-Za-z0-9]+)*$', 'product', 'productname', 'enter a valid one ex: Macbook, Macbook Pro, JBL');">
+                                        <label for="inputProductName">Product Name <span class="text-danger">*</span>
+                                          <div class="" id="productNameError" style="display: none;"></div></label>
+                                      </div>
+                                      
 
                                     <!-- Category (Select Input) -->
                                     <div class="row form-floating ms-4 me-3 mt-3">
@@ -166,10 +165,10 @@
                                     </div>
                                     <!-- Price -->
                                     <div class="row form-floating ms-4 me-3 mt-3">
-                                        <input type="text" class="form-control" id="inputPrice"
+                                        <input type="number" class="form-control" id="inputPrice"
                                             placeholder="Enter Price" required
-                                            onkeyup="textValidation2(inputPrice,productPriceError, '', 'product', 'price', '');">
-                                        <label for="inputPrice">Price <span class="text-danger">*</span>
+                                            onkeyup="textValidation2(inputPrice,productPriceError, '^\\d+(\\.\\d{2})?$', 'product', 'price', 'enter a valid one ex: 200.00');">
+                                        <label for="inputPrice">Price ($) <span class="text-danger">*</span>
                                             <div class="" id="productPriceError" style="display: none;"></div></label>
                                     </div>
 
@@ -177,7 +176,7 @@
                                     <div class="row form-floating ms-4 me-3 mt-3">
                                         <input type="text" class="form-control" id="inputSupplierName"
                                             placeholder="Enter Supplier Name" required
-                                            onkeyup="textValidation2(inputSupplierName,productSupError, '', 'product', 'suppliername', '');">
+                                            onkeyup="textValidation2(inputSupplierName,productSupError, '^([A-Z][a-z]+|[A-Z]{2,})(\\s[A-Za-z0-9]+)*$', 'product', 'suppliername', 'enter a valid one ex: Apple Distributers, APPLE, Panasonic');">
                                         <label for="inputSupplierName">Supplier Name <span
                                                 class="text-danger">*</span>
                                                 <div class="" id="productSupError" style="display: none;"></div></label>

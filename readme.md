@@ -58,6 +58,7 @@ The table includes options to edit or delete each product.
 * MySQL Workbench
 ## Steps to Run the Application
 1. *Clone the Repository:*
+Please use Intellij IDE  
 
 git clone https://github.com/Hirusha1-cpu/appleholidays_tech_assessment.git  
 cd `<project-directory>`
